@@ -22,6 +22,7 @@ form.onsubmit = e => {
   descInput.value = '';
   priorityInput.value = 'Mittel';
   save();
-  console.log(todos);
+  render(); // <-- funktioniert jetzt, weil render global ist
 };
 
+render();
