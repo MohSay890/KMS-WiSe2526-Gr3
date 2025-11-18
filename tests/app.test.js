@@ -245,5 +245,62 @@ test('filterTasks_titleAndPriorityFilter_combinedFilters', () => {
   expect(listItems.length).toBe(1);
   expect(listItems[0].textContent).toContain('Buy milk');
 });
+// TEST 1: Leere Kategorie löschen
+  test('deleteCategory_emptyCategory_onlyTwoRemain', async () => {
+    // Arrange: 3 Kategorien erstellen
+    app.categories.push({ name: 'Arbeit' });
+    app.categories.push({ name: 'Privat' });
+    app.categories.push({ name: 'Schule' });
+
+    // Mock: Dialog bestätigt Löschen
+    app.showConfirmDialog = jest.fn().mockResolvedValue(true);
+
+    // Act: Erste Kategorie löschen
+    await app.deleteCategory(0);
+
+    // Assert: Nur noch 2 Kategorien übrig
+    expect(app.categories.length).toBe(2);
+    expect(app.categories[0].name).toBe('Privat');
+    expect(app.categories[1].name).toBe('Schule');
+  });
+
+  // TEST 2: Kategorie mit Aufgaben löschen
+  test('deleteCategory_categoryWithMultipleTasks_tasksGetEmptyCategoryAndOthersUnchanged', async () => {
+    // Arrange: Kategorien und Aufgaben erstellen
+    app.categories.push({ name: 'Arbeit' });
+    app.categories.push({ name: 'Privat' });
+    app.categories.push({ name: 'Schule' });
+
+    app.todos.push({ title: 'Meeting', desc: 'Präsentation', priority: 'Hoch', category: 'Arbeit', done: false });
+    app.todos.push({ title: 'Email', desc: 'An Chef', priority: 'Niedrig', category: 'Arbeit', done: false });
+    app.todos.push({ title: 'Einkaufen', desc: 'Lebensmittel', priority: 'Mittel', category: 'Privat', done: false });
+    app.todos.push({ title: 'Hausaufgaben', desc: 'Mathe', priority: 'Hoch', category: 'Schule', done: false });
+
+    // Mock: Dialog bestätigt Löschen
+    app.showConfirmDialog = jest.fn().mockResolvedValue(true);
+
+    // Act: Kategorie "Arbeit" löschen (Index 0)
+    await app.deleteCategory(0);
+
+    // Assert: Kategorie wurde entfernt
+    expect(app.categories.length).toBe(2);
+    expect(app.categories.find(c => c.name === 'Arbeit')).toBeUndefined();
+
+    // Assert: Keine Aufgabe hat mehr Kategorie "Arbeit"
+    const arbeitTasks = app.todos.filter(t => t.category === 'Arbeit');
+    expect(arbeitTasks.length).toBe(0);
+
+    // Assert: Aufgaben haben leere Kategorie
+    const meetingTask = app.todos.find(t => t.title === 'Meeting');
+    const emailTask = app.todos.find(t => t.title === 'Email');
+    expect(meetingTask.category).toBe('');
+    expect(emailTask.category).toBe('');
+
+    // Assert: Andere Kategorien sind unverändert
+    const einkaufenTask = app.todos.find(t => t.title === 'Einkaufen');
+    const hausaufgabenTask = app.todos.find(t => t.title === 'Hausaufgaben');
+    expect(einkaufenTask.category).toBe('Privat');
+    expect(hausaufgabenTask.category).toBe('Schule');
+  });
 
 });
