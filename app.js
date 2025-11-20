@@ -258,3 +258,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.todoApp.render();
     window.todoApp.renderCategories();
 });
+
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = TodoApp;
+}
