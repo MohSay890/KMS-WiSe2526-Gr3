@@ -18,7 +18,7 @@ function render() {
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "🗑️ Löschen";
     deleteBtn.onclick = () => {
-      todos = todos.filter(t => t.title !== todo.title);
+      let todos = todos.filter(t => t.title !== todo.title);
       save();
       render();
     };
