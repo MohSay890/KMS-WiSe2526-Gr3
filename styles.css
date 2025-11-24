@@ -1,18 +1,18 @@
-body { 
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       margin: 0;
       padding: 40px;
       min-height: 100vh;
     }
-    
-    h1 { 
-      text-align: center; 
+
+    h1 {
+      text-align: center;
       color: white;
       margin-bottom: 30px;
       text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
-    
+
     .wrapper {
       display: flex;
       justify-content: center;
@@ -20,7 +20,7 @@ body {
       gap: 40px;
       flex-wrap: wrap;
     }
-    
+
     .panel {
       background: white;
       padding: 25px;
@@ -28,15 +28,15 @@ body {
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       min-width: 350px;
     }
-    
-    form { 
-      display: flex; 
-      flex-direction: column; 
-      gap: 12px; 
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
       margin-bottom: 25px;
     }
-    
-    input, textarea, select { 
+
+    input, textarea, select {
       padding: 12px;
       width: 92%;
       border: 2px solid #e1e5e9;
@@ -44,58 +44,58 @@ body {
       font-size: 14px;
       transition: border-color 0.3s ease;
     }
-    
+
     input:focus, textarea:focus, select:focus {
       outline: none;
       border-color: #3498db;
     }
-    
-    button { 
-      padding: 12px 20px; 
+
+    button {
+      padding: 12px 20px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
       transition: all 0.3s ease;
     }
-    
+
     .btn-primary {
       background: #3498db;
       color: white;
     }
-    
+
     .btn-primary:hover {
       background: #2980b9;
       transform: translateY(-2px);
     }
-    
+
     .btn-success {
       background: #27ae60;
       color: white;
     }
-    
+
     .btn-success:hover {
       background: #219652;
       transform: translateY(-2px);
     }
-    
+
     .btn-danger {
       background: #e74c3c;
       color: white;
     }
-    
+
     .btn-danger:hover {
       background: #c0392b;
       transform: translateY(-2px);
     }
-    
-    ul { 
-      list-style: none; 
-      padding: 0; 
+
+    ul {
+      list-style: none;
+      padding: 0;
       margin: 0;
     }
-    
-    li { 
+
+    li {
       background: white;
       border: 2px solid #f8f9fa;
       margin-bottom: 12px;
@@ -103,30 +103,30 @@ body {
       border-radius: 10px;
       transition: all 0.3s ease;
     }
-    
+
     li:hover {
       border-color: #3498db;
       transform: translateY(-2px);
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
-    
+
     li.done {
       background: #f8fff9;
       border-left: 5px solid #27ae60;
     }
-    
-    .title { 
-      font-weight: bold; 
+
+    .title {
+      font-weight: bold;
       font-size: 16px;
       margin-bottom: 5px;
     }
-    
-    .desc { 
-      font-size: 14px; 
+
+    .desc {
+      font-size: 14px;
       color: #666;
       margin-bottom: 10px;
     }
-    
+
     .priority {
       display: inline-block;
       padding: 4px 8px;
@@ -135,17 +135,17 @@ body {
       font-weight: bold;
       margin-left: 8px;
     }
-    
+
     .priority-high { background: #e74c3c; color: white; }
     .priority-medium { background: #f39c12; color: white; }
     .priority-low { background: #27ae60; color: white; }
-    
-    .actions { 
+
+    .actions {
       display: flex;
       gap: 8px;
       justify-content: flex-end;
     }
-    
+
     .actions button {
       padding: 6px 12px;
       font-size: 12px;
@@ -161,7 +161,7 @@ body {
       color: white;
       margin-left: 8px;
     }
-    
+
     .category-item {
       background: #f8f9fa;
       padding: 12px 15px;
@@ -172,7 +172,7 @@ body {
       justify-content: space-between;
       align-items: center;
     }
-    
+
     .category-item:hover {
       background: #e8f4fd;
     }
@@ -202,13 +202,13 @@ body {
     .filter-section .filter-input[type="text"] {
       padding: 12px 12px;
     }
-    
+
     h2 {
       color: #2c3e50;
       margin-bottom: 20px;
       font-size: 1.4em;
     }
-    
+
     h3 {
       color: #2c3e50;
       margin-bottom: 15px;
@@ -274,3 +274,334 @@ body {
     .modal-actions button {
       min-width: 100px;
     }
+/* ========== MOBILE RESPONSIVE STYLES ========== */
+
+/* Tablets and smaller screens (max-width: 1024px) */
+@media (max-width: 1024px) {
+    body {
+        padding: 20px;
+    }
+
+    .wrapper {
+        gap: 20px;
+    }
+
+    .panel {
+        min-width: 300px;
+        padding: 20px;
+    }
+}
+
+/* Large mobile devices (max-width: 768px) */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+        padding: 0 10px;
+    }
+
+    .wrapper {
+        flex-direction: column;
+        gap: 20px;
+        align-items: stretch;
+    }
+
+    .panel {
+        min-width: auto;
+        width: 100%;
+        padding: 20px;
+        margin-bottom: 0;
+    }
+
+    /* Form improvements for mobile */
+    form {
+        gap: 10px;
+    }
+
+    input, textarea, select {
+        width: 100%;
+        padding: 14px;
+        font-size: 16px; /* Better for mobile touch */
+    }
+
+    /* Better button sizing for touch */
+    button {
+        padding: 14px 20px;
+        font-size: 16px;
+    }
+
+    /* Filter section stack on mobile */
+    .filter-section {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .filter-section .filter-input {
+        min-width: auto;
+        width: 100%;
+        padding: 12px;
+    }
+
+    /* Task list improvements */
+    li {
+        padding: 12px;
+        margin-bottom: 10px;
+    }
+
+    .actions {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .actions button {
+        flex: 1;
+        min-width: 120px;
+        margin: 2px;
+    }
+
+    /* Modal improvements */
+    .modal-content {
+        margin: 20px;
+        width: auto;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .modal-actions button {
+        min-width: auto;
+        width: 100%;
+    }
+}
+
+/* Small mobile devices (max-width: 480px) */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+    }
+
+    h2 {
+        font-size: 1.2em;
+        margin-bottom: 15px;
+    }
+
+    .panel {
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    /* Compact forms */
+    form {
+        gap: 8px;
+    }
+
+    input, textarea, select {
+        padding: 12px;
+    }
+
+    button {
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+
+    /* Task items */
+    li {
+        padding: 10px;
+    }
+
+    .title {
+        font-size: 14px;
+    }
+
+    .desc {
+        font-size: 13px;
+    }
+
+    /* Priority and category badges */
+    .priority, .category {
+        font-size: 11px;
+        padding: 3px 6px;
+        margin-left: 5px;
+    }
+
+    /* Action buttons stack on very small screens */
+    .actions {
+        flex-direction: column;
+    }
+
+    .actions button {
+        width: 100%;
+        margin: 2px 0;
+    }
+
+    /* Category items */
+    .category-item {
+        padding: 10px 12px;
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+    }
+
+    .category-item button {
+        align-self: stretch;
+    }
+
+    /* Filter section */
+    .filter-section {
+        gap: 8px;
+    }
+
+    .filter-input {
+        padding: 10px;
+    }
+}
+
+/* Very small devices (max-width: 320px) */
+@media (max-width: 320px) {
+    body {
+        padding: 5px;
+    }
+
+    .panel {
+        padding: 12px;
+    }
+
+    h1 {
+        font-size: 1.3em;
+    }
+
+    input, textarea, select {
+        padding: 10px;
+    }
+
+    button {
+        padding: 10px 14px;
+    }
+}
+
+/* ========== TOUCH-FRIENDLY ENHANCEMENTS ========== */
+
+/* Better touch targets for all interactive elements */
+button,
+input[type="submit"],
+select {
+    min-height: 44px; /* Minimum touch target size */
+}
+
+/* Improve focus states for touch navigation */
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid #3498db;
+    outline-offset: 2px;
+}
+
+/* Prevent zoom on focus for iOS */
+@media (max-width: 768px) {
+    input,
+    textarea,
+    select {
+        font-size: 16px; /* Prevents iOS zoom */
+    }
+}
+
+/* Smooth scrolling for mobile */
+@media (max-width: 768px) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+/* ========== LANDSCAPE ORIENTATION SUPPORT ========== */
+
+@media (max-width: 768px) and (orientation: landscape) {
+    body {
+        padding: 10px;
+    }
+
+    .wrapper {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .panel {
+        min-width: calc(50% - 10px);
+    }
+
+    /* Reduce padding in landscape to fit more content */
+    .panel {
+        padding: 15px;
+    }
+}
+
+/* ========== HIGH-DPI SCREEN SUPPORT ========== */
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .btn-primary:hover,
+    .btn-success:hover,
+    .btn-danger:hover,
+    li:hover {
+        transform: translateY(-1px); /* Subtler hover effect on retina */
+    }
+}
+
+/* ========== ACCESSIBILITY IMPROVEMENTS ========== */
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .modal-content {
+        animation: none;
+    }
+}
+
+/* High contrast mode support - using safer approach */
+@media (prefers-contrast: more) {
+    .priority-high,
+    .priority-medium,
+    .priority-low {
+        border: 1px solid #000;
+    }
+
+    li {
+        border: 2px solid #333;
+    }
+
+    .btn-primary,
+    .btn-success,
+    .btn-danger {
+        border: 1px solid #000;
+    }
+}
+
+/* Alternative high contrast support for older browsers */
+.high-contrast {
+    .priority-high,
+    .priority-medium,
+    .priority-low {
+        border: 1px solid #000 !important;
+    }
+
+    li {
+        border: 2px solid #333 !important;
+    }
+}
