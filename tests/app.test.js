@@ -302,5 +302,39 @@ test('filterTasks_titleAndPriorityFilter_combinedFilters', () => {
     expect(einkaufenTask.category).toBe('Privat');
     expect(hausaufgabenTask.category).toBe('Schule');
   });
-  
+  test('handleTaskSubmit_withValidInput_createsTaskAndResetsForm', () => {
+    // ARRANGE: Formular-Eingabefelder mit Testwerten füllen
+    app.elements.titleInput.value = 'Neue Aufgabe';
+    app.elements.descInput.value = 'Beschreibung test';
+    app.elements.priorityInput.value = 'Hoch';
+
+    // Mock-Event erstellen (verhindert tatsächliches Formular-Submit)
+    const mockEvent = {
+      preventDefault: jest.fn()
+    };
+
+    // Spy auf save und render Methoden (überwachen ob sie aufgerufen werden)
+    jest.spyOn(app, 'save');
+    jest.spyOn(app, 'render');
+
+    // ACT: Formular-Submit Handler aufrufen
+    app.handleTaskSubmit(mockEvent);
+
+    // ASSERT: Überprüfen ob Aufgabe korrekt erstellt wurde
+    expect(app.todos.length).toBe(1); // Es sollte genau eine Aufgabe geben
+    expect(app.todos[0].title).toBe('Neue Aufgabe'); // Titel sollte stimmen
+    expect(app.todos[0].desc).toBe('Beschreibung test'); // Beschreibung sollte stimmen
+    expect(app.todos[0].priority).toBe('Hoch'); // Priorität sollte stimmen
+    expect(app.todos[0].done).toBe(false); // Aufgabe sollte nicht erledigt sein
+
+    // ASSERT: Überprüfen ob Formular zurückgesetzt wurde
+    expect(app.elements.titleInput.value).toBe(''); // Titel-Feld sollte leer sein
+    expect(app.elements.descInput.value).toBe(''); // Beschreibungs-Feld sollte leer sein
+    expect(app.elements.priorityInput.value).toBe('Mittel'); // Priorität sollte auf Standard zurückgesetzt sein
+
+    // ASSERT: Überprüfen ob notwendige Methoden aufgerufen wurden
+    expect(mockEvent.preventDefault).toHaveBeenCalled(); // Event sollte verhindert worden sein
+    expect(app.save).toHaveBeenCalled(); // save() sollte aufgerufen worden sein
+    expect(app.render).toHaveBeenCalled(); // render() sollte aufgerufen worden sein
+  });
 });
