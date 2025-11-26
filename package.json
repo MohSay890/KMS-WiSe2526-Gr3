@@ -8,7 +8,7 @@
     "test": "jest",
     "lint": "npm run lint:js && npm run lint:html",
     "lint:js": "eslint '*.js'",
-    "lint:fix": "eslint '*.js' --fix",
+    "lint:js-fix": "eslint '*.js' --fix",
     "lint:html": "htmlhint index.html",
     "lint:all": "npm run lint"
   },
