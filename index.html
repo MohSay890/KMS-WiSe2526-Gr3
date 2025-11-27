@@ -13,54 +13,54 @@
     <!-- Aufgaben Panel -->
     <div class="panel">
       <h2>🎯 Aufgaben</h2>
-      <form id="todoForm">
-        <input type="text" id="taskTitle" placeholder="Aufgabentitel" required>
-        <textarea id="taskDesc" placeholder="Beschreibung"></textarea>
-        <select id="taskPriority">
+      <form id="todo-form">
+        <input type="text" id="task-title" placeholder="Aufgabentitel" required>
+        <textarea id="task-desc" placeholder="Beschreibung"></textarea>
+        <select id="task-priority">
           <option value="Hoch">🔴 Hoch</option>
           <option value="Mittel" selected>🟡 Mittel</option>
           <option value="Niedrig">🟢 Niedrig</option>
         </select>
-        <select id="taskCategory">
+        <select id="task-category">
           <option value="">📂 Kategorie auswählen </option>
         </select>
         <button type="submit" class="btn-primary">➕ Aufgabe hinzufügen</button>
       </form>
         <!-- Filter Section -->
         <div class="filter-section">
-          <input type="text" id="titleFilter" placeholder="🔍 Nach Titel suchen" class="filter-input">
-          <select id="priorityFilter" class="filter-input">
+          <input type="text" id="title-filter" placeholder="🔍 Nach Titel suchen" class="filter-input">
+          <select id="priority-filter" class="filter-input">
             <option value="">🎯 Alle Prioritäten</option>
             <option value="Hoch">🔴 Hoch</option>
             <option value="Mittel">🟡 Mittel</option>
             <option value="Niedrig">🟢 Niedrig</option>
           </select>
-          <select id="categoryFilter" class="filter-input">
+          <select id="category-filter" class="filter-input">
             <option value="">📂 Alle Kategorien</option>
           </select>
         </div>
-        <ul id="taskList"></ul>
+        <ul id="task-list"></ul>
     </div>
 
     <!-- Kategorien Panel -->
     <div class="panel">
       <h2>📂 Kategorien</h2>
-      <form id="categoryForm">
-        <input type="text" id="categoryName" placeholder="Kategoriename" required>
+      <form id="category-form">
+        <input type="text" id="category-name" placeholder="Kategoriename" required>
         <button type="submit" class="btn-success">📁 Kategorie anlegen</button>
       </form>
-      <ul id="categoryList"></ul>
+      <ul id="category-list"></ul>
     </div>
   </div>
 
   <!-- Custom Modal -->
-  <div id="confirmModal" class="modal">
+  <div id="confirm-modal" class="modal">
     <div class="modal-content">
-      <h3 id="modalTitle">Löschen bestätigen</h3>
-      <p id="modalMessage">Möchtest du dieses Element wirklich löschen?</p>
+      <h3 id="modal-title">Löschen bestätigen</h3>
+      <p id="modal-message">Möchtest du dieses Element wirklich löschen?</p>
       <div class="modal-actions">
-        <button id="modalConfirm" class="btn-danger">Ja, löschen</button>
-        <button id="modalCancel" class="btn-primary">Abbrechen</button>
+        <button id="modal-confirm" class="btn-danger">Ja, löschen</button>
+        <button id="modal-cancel" class="btn-primary">Abbrechen</button>
       </div>
     </div>
   </div>
