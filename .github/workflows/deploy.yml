@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   workflow_run:
-    workflows: ["Lint", "Node.js Unit Tests", "SonarQube analysis", "HTML Code Quality Check"]
+    workflows: ["Lint", "Node.js Unit Tests", "SonarQube analysis", "HTML Code Quality Check", "User Acceptance Tests (UAT)"]
     types:
       - completed
 

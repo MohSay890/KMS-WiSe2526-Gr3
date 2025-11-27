@@ -1,0 +1,36 @@
+name: User Acceptance Tests (UAT)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  cypress-run:
+    name: Cypress E2E Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Installiere Abhängigkeiten
+        # Installiert alle Pakete, einschließlich Cypress und http-server
+        run: npm ci
+
+      - name: Führe Cypress E2E Tests aus
+        # Nutzt die spezielle Action von Cypress, um die App zu hosten und die Tests auszuführen
+        uses: cypress-io/github-action@v6
+        with:
+          # Startet den Webserver mit dem Skript, das wir in package.json definiert haben
+          start: npm start
+          # Cypress wartet, bis der Server unter dieser Adresse antwortet (8080 ist der Standard von http-server)
+          wait-on: 'http://localhost:8080'
+          # Führt den Befehl 'npm run cypress: run' aus, der Cypress im Headless-Modus startet
+          command: npm run cypress:run
