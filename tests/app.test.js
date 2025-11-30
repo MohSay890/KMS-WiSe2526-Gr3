@@ -337,4 +337,26 @@ test('filterTasks_titleAndPriorityFilter_combinedFilters', () => {
     expect(app.save).toHaveBeenCalled(); // save() sollte aufgerufen worden sein
     expect(app.render).toHaveBeenCalled(); // render() sollte aufgerufen worden sein
   });
+    // NEUE TESTS FÜR VALIDIERUNG
+    test('createTask_withEmptyTitle_taskIsNotCreated', () => {
+        // Arrange: Vorbereitung - Leeren Titel setzen
+        app.elements.titleInput.value = '';
+        app.elements.descInput.value = 'Beschreibung';
+        app.elements.priorityInput.value = 'Mittel';
+        const initialTodoCount = app.todos.length;
+        // Act: Ausführung - Formular abschicken
+        app.handleTaskSubmit({ preventDefault: jest.fn() });
+        // Assert: Überprüfung - Keine neue Aufgabe sollte erstellt worden sein
+        expect(app.todos.length).toBe(initialTodoCount);
+    });
+    test('createTask_withOnlySpacesInTitle_taskIsNotCreated', () => {
+        // Arrange: Vorbereitung - Titel nur mit Leerzeichen setzen
+        app.elements.titleInput.value = '   ';
+        app.elements.descInput.value = 'Beschreibung';
+        const initialTodoCount = app.todos.length;
+        // Act: Ausführung - Formular abschicken
+        app.handleTaskSubmit({ preventDefault: jest.fn() });
+        // Assert: Überprüfung - Keine neue Aufgabe sollte erstellt worden sein
+        expect(app.todos.length).toBe(initialTodoCount);
+    });
 });
