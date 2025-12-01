@@ -1,5 +1,5 @@
-const categoryNameInput = document.getElementById('categoryName');
-const categoryForm = document.getElementById('categoryForm');
+const categoryNameInput = document.getElementById('category-name');
+const categoryForm = document.getElementById('category-form');
 
 const categories = JSON.parse(localStorage.getItem('categories') || '[]');
 

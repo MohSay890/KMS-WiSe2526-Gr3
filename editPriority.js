@@ -11,7 +11,7 @@
 
     // Enhance the list after the original render runs
     function enhancePriorities () {
-      const list = document.getElementById('taskList');
+      const list = document.getElementById('task-list');
       if (!list) return;
 
       const items = Array.from(list.querySelectorAll('li'));

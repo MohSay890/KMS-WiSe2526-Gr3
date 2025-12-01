@@ -3,23 +3,23 @@ class TodoApp {
   constructor () {
     // Initialize DOM elements
     this.elements = {
-      titleInput: document.getElementById('taskTitle'),
-      descInput: document.getElementById('taskDesc'),
-      priorityInput: document.getElementById('taskPriority'),
-      categoryInput: document.getElementById('taskCategory'),
-      taskList: document.getElementById('taskList'),
-      todoForm: document.getElementById('todoForm'),
-      categoryForm: document.getElementById('categoryForm'),
-      categoryList: document.getElementById('categoryList'),
-      categoryNameInput: document.getElementById('categoryName'),
-      titleFilter: document.getElementById('titleFilter'),
-      priorityFilter: document.getElementById('priorityFilter'),
-      categoryFilter: document.getElementById('categoryFilter'),
-      modal: document.getElementById('confirmModal'),
-      modalTitle: document.getElementById('modalTitle'),
-      modalMessage: document.getElementById('modalMessage'),
-      modalConfirm: document.getElementById('modalConfirm'),
-      modalCancel: document.getElementById('modalCancel')
+      titleInput: document.getElementById('task-title'),
+      descInput: document.getElementById('task-desc'),
+      priorityInput: document.getElementById('task-priority'),
+      categoryInput: document.getElementById('task-category'),
+      taskList: document.getElementById('task-list'),
+      todoForm: document.getElementById('todo-form'),
+      categoryForm: document.getElementById('category-form'),
+      categoryList: document.getElementById('category-list'),
+      categoryNameInput: document.getElementById('category-name'),
+      titleFilter: document.getElementById('title-filter'),
+      priorityFilter: document.getElementById('priority-filter'),
+      categoryFilter: document.getElementById('category-filter'),
+      modal: document.getElementById('confirm-modal'),
+      modalTitle: document.getElementById('modal-title'),
+      modalMessage: document.getElementById('modal-message'),
+      modalConfirm: document.getElementById('modal-confirm'),
+      modalCancel: document.getElementById('modal-cancel')
     };
 
     // Initialize data

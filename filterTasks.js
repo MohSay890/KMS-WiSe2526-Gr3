@@ -8,18 +8,18 @@
     if (window.__filterWrapped) return; // avoid double-wrapping
 
     // --- 1) Inject a tiny filter toolbar ---
-    const form = document.getElementById('todoForm');
+    const form = document.getElementById('todo-form');
     const bar = document.createElement('div');
     bar.id = 'filters';
     bar.style.cssText = 'max-width:500px;margin:12px auto;display:flex;gap:8px;align-items:center;';
 
     const titleInput = document.createElement('input');
-    titleInput.id = 'filterTitle';
+    titleInput.id = 'filter-title';
     titleInput.placeholder = 'Nach Titel suchen…';
     titleInput.style.cssText = 'flex:1;padding:8px';
 
     const prioSelect = document.createElement('select');
-    prioSelect.id = 'filterPriority';
+    prioSelect.id = 'filter-priority';
     prioSelect.style.cssText = 'padding:8px';
     prioSelect.innerHTML = `
       <option value="">Alle Prioritäten</option>
@@ -52,7 +52,7 @@
     }
 
     function postFilter () {
-      const list = document.getElementById('taskList');
+      const list = document.getElementById('task-list');
       if (!list) return;
       const titleNeedle = titleInput.value;
       const prioNeedle = prioSelect.value;

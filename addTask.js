@@ -1,8 +1,8 @@
 /* global render */
-const titleInput = document.getElementById('taskTitle');
-const descInput = document.getElementById('taskDesc');
-const priorityInput = document.getElementById('taskPriority');
-const form = document.getElementById('todoForm');
+const titleInput = document.getElementById('task-title');
+const descInput = document.getElementById('task-desc');
+const priorityInput = document.getElementById('task-priority');
+const form = document.getElementById('todo-form');
 const todos = JSON.parse(localStorage.getItem('todos') || '[]');
 
 function save () {
