@@ -296,4 +296,90 @@ describe('TodoApp', () => {
     expect(einkaufenTask.category).toBe('Privat');
     expect(hausaufgabenTask.category).toBe('Schule');
   });
+  test('handleTaskSubmit_withValidInput_createsTaskAndResetsForm', () => {
+    // ARRANGE: Formular-Eingabefelder mit Testwerten füllen
+    app.elements.titleInput.value = 'Neue Aufgabe';
+    app.elements.descInput.value = 'Beschreibung test';
+
+    // OPTIONEN zum Select hinzufügen, bevor wir den Wert setzen
+    const prioritySelect = app.elements.priorityInput;
+    ['Hoch', 'Mittel', 'Niedrig'].forEach(priority => {
+      const option = document.createElement('option');
+      option.value = priority;
+      option.textContent = priority;
+      prioritySelect.appendChild(option);
+    });
+
+    // Jetzt können wir den Wert setzen
+    prioritySelect.value = 'Hoch';
+
+    const mockEvent = {
+      preventDefault: jest.fn()
+    };
+
+    jest.spyOn(app, 'save');
+    jest.spyOn(app, 'render');
+
+    // ACT: Formular-Submit Handler aufrufen
+    app.handleTaskSubmit(mockEvent);
+
+    // ASSERT: Überprüfen ob Aufgabe korrekt erstellt wurde
+    expect(app.todos.length).toBe(1);
+    expect(app.todos[0].title).toBe('Neue Aufgabe');
+    expect(app.todos[0].desc).toBe('Beschreibung test');
+    expect(app.todos[0].priority).toBe('Hoch'); // Jetzt sollte das funktionieren!
+    expect(app.todos[0].done).toBe(false);
+
+    // ASSERT: Überprüfen ob Formular zurückgesetzt wurde
+    expect(app.elements.titleInput.value).toBe('');
+    expect(app.elements.descInput.value).toBe('');
+    expect(app.elements.priorityInput.value).toBe('Mittel');
+
+    expect(mockEvent.preventDefault).toHaveBeenCalled();
+    expect(app.save).toHaveBeenCalled();
+    expect(app.render).toHaveBeenCalled();
+  });
+  test('createTask_withEmptyTitle_taskIsNotCreated', () => {
+    // Arrange: Options zu priorityInput hinzufügen
+    const prioritySelect = app.elements.priorityInput;
+    ['Hoch', 'Mittel', 'Niedrig'].forEach(priority => {
+      const option = document.createElement('option');
+      option.value = priority;
+      option.textContent = priority;
+      prioritySelect.appendChild(option);
+    });
+
+    app.elements.titleInput.value = '';
+    app.elements.descInput.value = 'Beschreibung';
+    app.elements.priorityInput.value = 'Mittel';
+    const initialTodoCount = app.todos.length;
+
+    // Act
+    app.handleTaskSubmit({ preventDefault: jest.fn() });
+
+    // Assert
+    expect(app.todos.length).toBe(initialTodoCount);
+  });
+
+  test('createTask_withOnlySpacesInTitle_taskIsNotCreated', () => {
+    // Arrange: Options zu priorityInput hinzufügen
+    const prioritySelect = app.elements.priorityInput;
+    ['Hoch', 'Mittel', 'Niedrig'].forEach(priority => {
+      const option = document.createElement('option');
+      option.value = priority;
+      option.textContent = priority;
+      prioritySelect.appendChild(option);
+    });
+
+    app.elements.titleInput.value = '   ';
+    app.elements.descInput.value = 'Beschreibung';
+    app.elements.priorityInput.value = 'Mittel';
+    const initialTodoCount = app.todos.length;
+
+    // Act
+    app.handleTaskSubmit({ preventDefault: jest.fn() });
+
+    // Assert
+    expect(app.todos.length).toBe(initialTodoCount);
+  });
 });
