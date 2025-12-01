@@ -1,0 +1,27 @@
+name: HTML Code Quality Check
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint-html:
+    name: HTML Linter
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Installiere Abhängigkeiten
+        run: npm ci
+
+      - name: Führe HTML-Linter aus
+        run: npm run lint:html

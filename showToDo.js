@@ -1,4 +1,6 @@
-function render() {
+const todos = []; // Define todos as an empty array or load from storage if needed
+
+function render () {
   const list = document.getElementById('taskList');
   list.innerHTML = '';
   todos.forEach((todo) => {
@@ -15,14 +17,15 @@ function render() {
 
     const actions = document.createElement('div');
     actions.className = 'actions';
-    const deleteBtn = document.createElement("button");
-    deleteBtn.textContent = "🗑️ Löschen";
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = '🗑️ Löschen';
     deleteBtn.onclick = () => {
-      todos = todos.filter(t => t.title !== todo.title);
+      const filtered = todos.filter(t => t.title !== todo.title);
+      todos.splice(0, todos.length, ...filtered);
       save();
       render();
     };
-    actions.appendChild(deleteBtn); 
+    actions.appendChild(deleteBtn);
 
     li.appendChild(title);
     li.appendChild(desc);
@@ -30,3 +33,11 @@ function render() {
     list.appendChild(li);
   });
 }
+
+// Dummy save function to avoid errors; implement actual saving logic as needed
+function save () {
+  // For example, save to localStorage:
+  // localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+window.render = render;
