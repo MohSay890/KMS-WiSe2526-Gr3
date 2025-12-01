@@ -300,14 +300,23 @@ describe('TodoApp', () => {
     // ARRANGE: Formular-Eingabefelder mit Testwerten füllen
     app.elements.titleInput.value = 'Neue Aufgabe';
     app.elements.descInput.value = 'Beschreibung test';
-    app.elements.priorityInput.value = 'Hoch';
 
-    // Mock-Event erstellen (verhindert tatsächliches Formular-Submit)
+    // OPTIONEN zum Select hinzufügen, bevor wir den Wert setzen
+    const prioritySelect = app.elements.priorityInput;
+    ['Hoch', 'Mittel', 'Niedrig'].forEach(priority => {
+      const option = document.createElement('option');
+      option.value = priority;
+      option.textContent = priority;
+      prioritySelect.appendChild(option);
+    });
+
+    // Jetzt können wir den Wert setzen
+    prioritySelect.value = 'Hoch';
+
     const mockEvent = {
       preventDefault: jest.fn()
     };
 
-    // Spy auf save und render Methoden (überwachen ob sie aufgerufen werden)
     jest.spyOn(app, 'save');
     jest.spyOn(app, 'render');
 
@@ -315,42 +324,62 @@ describe('TodoApp', () => {
     app.handleTaskSubmit(mockEvent);
 
     // ASSERT: Überprüfen ob Aufgabe korrekt erstellt wurde
-    expect(app.todos.length).toBe(1); // Es sollte genau eine Aufgabe geben
-    expect(app.todos[0].title).toBe('Neue Aufgabe'); // Titel sollte stimmen
-    expect(app.todos[0].desc).toBe('Beschreibung test'); // Beschreibung sollte stimmen
-    expect(app.todos[0].priority).toBe('Hoch'); // Priorität sollte stimmen
-    expect(app.todos[0].done).toBe(false); // Aufgabe sollte nicht erledigt sein
+    expect(app.todos.length).toBe(1);
+    expect(app.todos[0].title).toBe('Neue Aufgabe');
+    expect(app.todos[0].desc).toBe('Beschreibung test');
+    expect(app.todos[0].priority).toBe('Hoch'); // Jetzt sollte das funktionieren!
+    expect(app.todos[0].done).toBe(false);
 
     // ASSERT: Überprüfen ob Formular zurückgesetzt wurde
-    expect(app.elements.titleInput.value).toBe(''); // Titel-Feld sollte leer sein
-    expect(app.elements.descInput.value).toBe(''); // Beschreibungs-Feld sollte leer sein
-    expect(app.elements.priorityInput.value).toBe('Mittel'); // Priorität sollte auf Standard zurückgesetzt sein
+    expect(app.elements.titleInput.value).toBe('');
+    expect(app.elements.descInput.value).toBe('');
+    expect(app.elements.priorityInput.value).toBe('Mittel');
 
-    // ASSERT: Überprüfen ob notwendige Methoden aufgerufen wurden
-    expect(mockEvent.preventDefault).toHaveBeenCalled(); // Event sollte verhindert worden sein
-    expect(app.save).toHaveBeenCalled(); // save() sollte aufgerufen worden sein
-    expect(app.render).toHaveBeenCalled(); // render() sollte aufgerufen worden sein
+    expect(mockEvent.preventDefault).toHaveBeenCalled();
+    expect(app.save).toHaveBeenCalled();
+    expect(app.render).toHaveBeenCalled();
   });
-    // NEUE TESTS FÜR VALIDIERUNG
-    test('createTask_withEmptyTitle_taskIsNotCreated', () => {
-        // Arrange: Vorbereitung - Leeren Titel setzen
-        app.elements.titleInput.value = '';
-        app.elements.descInput.value = 'Beschreibung';
-        app.elements.priorityInput.value = 'Mittel';
-        const initialTodoCount = app.todos.length;
-        // Act: Ausführung - Formular abschicken
-        app.handleTaskSubmit({ preventDefault: jest.fn() });
-        // Assert: Überprüfung - Keine neue Aufgabe sollte erstellt worden sein
-        expect(app.todos.length).toBe(initialTodoCount);
+  test('createTask_withEmptyTitle_taskIsNotCreated', () => {
+    // Arrange: Options zu priorityInput hinzufügen
+    const prioritySelect = app.elements.priorityInput;
+    ['Hoch', 'Mittel', 'Niedrig'].forEach(priority => {
+      const option = document.createElement('option');
+      option.value = priority;
+      option.textContent = priority;
+      prioritySelect.appendChild(option);
     });
-    test('createTask_withOnlySpacesInTitle_taskIsNotCreated', () => {
-        // Arrange: Vorbereitung - Titel nur mit Leerzeichen setzen
-        app.elements.titleInput.value = '   ';
-        app.elements.descInput.value = 'Beschreibung';
-        const initialTodoCount = app.todos.length;
-        // Act: Ausführung - Formular abschicken
-        app.handleTaskSubmit({ preventDefault: jest.fn() });
-        // Assert: Überprüfung - Keine neue Aufgabe sollte erstellt worden sein
-        expect(app.todos.length).toBe(initialTodoCount);
+
+    app.elements.titleInput.value = '';
+    app.elements.descInput.value = 'Beschreibung';
+    app.elements.priorityInput.value = 'Mittel';
+    const initialTodoCount = app.todos.length;
+
+    // Act
+    app.handleTaskSubmit({ preventDefault: jest.fn() });
+
+    // Assert
+    expect(app.todos.length).toBe(initialTodoCount);
+  });
+
+  test('createTask_withOnlySpacesInTitle_taskIsNotCreated', () => {
+    // Arrange: Options zu priorityInput hinzufügen
+    const prioritySelect = app.elements.priorityInput;
+    ['Hoch', 'Mittel', 'Niedrig'].forEach(priority => {
+      const option = document.createElement('option');
+      option.value = priority;
+      option.textContent = priority;
+      prioritySelect.appendChild(option);
     });
+
+    app.elements.titleInput.value = '   ';
+    app.elements.descInput.value = 'Beschreibung';
+    app.elements.priorityInput.value = 'Mittel';
+    const initialTodoCount = app.todos.length;
+
+    // Act
+    app.handleTaskSubmit({ preventDefault: jest.fn() });
+
+    // Assert
+    expect(app.todos.length).toBe(initialTodoCount);
+  });
 });
